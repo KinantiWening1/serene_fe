@@ -9,7 +9,7 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  useDisclosure
+  useDisclosure,
 } from '@chakra-ui/react'
 import AddUser from './AddUser'
 import axios from 'axios'
@@ -17,21 +17,38 @@ import axios from 'axios'
 export default function Header() {
   //Modal states
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleMemberSubmit = async (memberData:any) => {
+
+  const handleUserSubmit = async (userData: any) => {
     try {
-      // Convert Date to ISO string
-      const formattedData = {
-        ...memberData,
-      birthday: memberData.birthday.toISOString(),
-     };
-      const response = await axios.post('https://smarthubbe-production.up.railway.app/member/', formattedData);
-      console.log('Member added successfully:', response.data);
-      console.log(formattedData)
-      onClose(); 
+      // First, perform the login to obtain the access token
+      const loginResponse = await axios.post(
+        'http://127.0.0.1:8000/auth/token',
+        'grant_type=password&username=johndoe&password=password123&scope=&client_id=&client_secret=',
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      );
+  
+      const accessToken = loginResponse.data.access_token;
+  
+      // Now, use the obtained access token for the authenticated request
+      const response = await axios.post('http://127.0.0.1:8000/user/', userData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+  
+      console.log('User added successfully:', response.data);
+      onClose();
+      showAlert('success', 'Register successful');
     } catch (error) {
-      console.error('Error adding member:', error);
+      console.error('Error adding user:', error);
+      showAlert('error', 'Register error');
     }
   };
+  
 
   return (
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
@@ -71,12 +88,13 @@ export default function Header() {
               _hover={{
                 bg: '#6878F4',
               }}>
-              Enroll as Member
+              Register Now
             </Button>
             <Button rounded={'full'}>See Facilities</Button>
           </Stack>
         </Stack>
         {/* Modal Component */}
+        <AddUser disclosure={{ isOpen, onClose }} submitFunction={handleUserSubmit} />
       </Flex>
       <Flex flex={1}>
         <Image
