@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDisclosure, Button, HStack, Heading, Spacer} from '@chakra-ui/react';
 import Navbar from '../components/Navbar';
 import TableMovies from '../components/TableMovies';
@@ -7,7 +7,10 @@ import axios from 'axios';
 
 
 export default function MoviesPage() {
-  const [movieRecommendations, setMovieRecommendations] = useState([]);
+  const [movieRecommendations, setMovieRecommendations] = useState({
+    recommendations: [],
+  });
+  
   const { isOpen, onOpen, onClose } = useDisclosure(); 
 
   const handleGenerateRecommendationClick = () => {
@@ -18,7 +21,7 @@ export default function MoviesPage() {
     try {
       console.log('masuk kesini')
       const loginResponse = await axios.post(
-        'http://127.0.0.1:8000/auth/token',
+        'https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/auth/token',
         'grant_type=password&username=johndoe&password=password123&scope=&client_id=&client_secret=',
         {
           headers: {
@@ -29,7 +32,7 @@ export default function MoviesPage() {
   
       const accessToken = loginResponse.data.access_token;
       // Make an API call to fetch movie recommendations
-      const response = await axios.get(`http://127.0.0.1:8000/recommendation/${moodData.mood}/${moodData.max_amount}`,{
+      const response = await axios.get(`https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/recommendation/${moodData.mood}/${moodData.max_amount}`,{
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

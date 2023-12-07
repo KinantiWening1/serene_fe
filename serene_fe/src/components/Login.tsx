@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Flex,
-  Heading,
   Input,
   Button,
   InputGroup,
@@ -37,7 +36,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/auth/token',
+        'https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/auth/token',
         `grant_type=password&username=${username}&password=${password}&scope=&client_id=&client_secret=`,
         {
           headers: {
@@ -52,7 +51,7 @@ export default function Login() {
       login(accessToken); // Store the token in the context
     console.log(username)
     console.log(accessToken)
-      const userResponse = await axios.get(`http://127.0.0.1:8000/user/${username}`, {
+      const userResponse = await axios.get(`https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/user/${username}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

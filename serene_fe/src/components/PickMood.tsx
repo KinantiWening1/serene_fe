@@ -14,7 +14,6 @@ import {
   ChakraProvider,
   extendTheme,
 } from '@chakra-ui/react';
-import axios from 'axios';
 
 const theme = extendTheme({
   fonts: {

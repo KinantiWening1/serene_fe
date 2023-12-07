@@ -1,6 +1,5 @@
 'use client'
 
-import React, { useState } from 'react';
 import {
   Button,
   Flex,
@@ -21,7 +20,7 @@ export default function Header() {
 
   const handleUserSubmit = async (userData: any) => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/user/', userData);
+      const response = await axios.post('https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/user/', userData);
       console.log('User added successfully:', response.data);
       onClose();
     } catch (error) {

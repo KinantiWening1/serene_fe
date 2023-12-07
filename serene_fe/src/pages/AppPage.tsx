@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDisclosure, Button, HStack, Heading, Spacer} from '@chakra-ui/react';
 import Navbar from '../components/Navbar';
 import TablePsy from '../components/TablePsy';
@@ -19,7 +19,7 @@ export default function AppPage() {
   const handlePsyMatch = async (prefData:any) => {
     try {
       console.log(accessToken)
-      const responseUser = await axios.get(`http://127.0.0.1:8000/user/active/${accessToken}`,{
+      const responseUser = await axios.get(`https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/user/active/${accessToken}`,{
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -34,14 +34,14 @@ export default function AppPage() {
       userData['preference'] = prefData.preference
       console.log(userData)
 
-      const changedData = await axios.put(`http://127.0.0.1:8000/user/`, userData, {
+      const changedData = await axios.put(`https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/user/`, userData, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
 
       console.log(changedData.data)
-      const schedData = await axios.get(`http://127.0.0.1:8000/schedule/${userData['user_id']}`, {
+      const schedData = await axios.get(`https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/schedule/${userData['user_id']}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
