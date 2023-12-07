@@ -178,7 +178,7 @@ import {
                   }}
                   as={RouterLink} to="/appdata"
                 >
-                  Data Appointmnet
+                  Data Appointment
                 </Link>
               </Box>
             }
@@ -230,7 +230,7 @@ import {
                   _hover={{
                     color: 'blue',
                   }}
-                  as={RouterLink} to="/apppage"
+                  as={RouterLink} to="/moviespage"
                 >
                   Movie Recommendations
                 </Link>
@@ -253,7 +253,7 @@ import {
           }
 
           { isAdmin && <Logout/>}
-      
+          { isUser && <Logout/>}
           { isPublic && 
             <Button colorScheme="blue" mr={3} as={RouterLink} to="/login" style={customButtonStyle}>
               Login

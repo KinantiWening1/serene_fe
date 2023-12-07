@@ -12,9 +12,7 @@ export default function Testimony() {
       align={'center'}
       direction={'column'}>
       <Text fontSize={{ base: 'xl', md: '2xl' }} textAlign={'center'} maxW={'3xl'}>
-        We had an incredible experience working in SmartHub Coworking Space and were impressed
-        they made such a big difference in our productivity. Our team is so grateful for
-        the wonderful environment they have set!
+      Serene has been a lifesaver, providing accessible and compassionate online mental health consultations that have greatly improved my well-being.
       </Text>
       <Box textAlign={'center'}>
         <Avatar

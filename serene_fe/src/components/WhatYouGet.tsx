@@ -45,12 +45,12 @@ export default function WhatYouGet() {
             p={1}
             alignSelf={'flex-start'}
             rounded={'md'}>
-            What You Get As A Member
+            What You Get As A User
           </Text>
-          <Heading>A comfortable working space</Heading>
+          <Heading>An Amazing Mental Health Experience</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
-            Unbeatable ambiance, exciting facilities, and good food.
-            What more can you ask for?
+            Great psychologists, good consultation sessions, and
+            even movie recommendations based on mood!
           </Text>
           <Stack
             spacing={4}
@@ -60,17 +60,17 @@ export default function WhatYouGet() {
             <Feature
               icon={<Icon as={IoAnalyticsSharp} color={'yellow.500'} w={5} h={5} />}
               iconBg={useColorModeValue('yellow.100', 'yellow.900')}
-              text={'Business Meetings'}
+              text={'Find Your Personalized Psychologist'}
             />
             <Feature
               icon={<Icon as={IoLogoBitcoin} color={'green.500'} w={5} h={5} />}
               iconBg={useColorModeValue('green.100', 'green.900')}
-              text={'School Work'}
+              text={'Get Movie Recommendations'}
             />
             <Feature
               icon={<Icon as={IoSearchSharp} color={'purple.500'} w={5} h={5} />}
               iconBg={useColorModeValue('purple.100', 'purple.900')}
-              text={'Casual Hangouts'}
+              text={'And Many More'}
             />
           </Stack>
         </Stack>

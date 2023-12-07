@@ -18,11 +18,13 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo_vertikal.svg";
 import axios from 'axios';
+import { useAuth } from '../auth/AuthContext';
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function Login() {
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -47,9 +49,9 @@ export default function Login() {
       // Assuming the response contains an access token
       const accessToken = response.data.access_token;
 
-      // Store the access token in your state or context for later use
-      // Example: setAccessToken(accessToken);
-    console.log(typeof username)
+      login(accessToken); // Store the token in the context
+    console.log(username)
+    console.log(accessToken)
       const userResponse = await axios.get(`http://127.0.0.1:8000/user/${username}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,

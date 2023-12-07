@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react'
 import AddUser from './AddUser'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   //Modal states
@@ -20,32 +21,11 @@ export default function Header() {
 
   const handleUserSubmit = async (userData: any) => {
     try {
-      // First, perform the login to obtain the access token
-      const loginResponse = await axios.post(
-        'http://127.0.0.1:8000/auth/token',
-        'grant_type=password&username=johndoe&password=password123&scope=&client_id=&client_secret=',
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }
-      );
-  
-      const accessToken = loginResponse.data.access_token;
-  
-      // Now, use the obtained access token for the authenticated request
-      const response = await axios.post('http://127.0.0.1:8000/user/', userData, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-  
+      const response = await axios.post('http://127.0.0.1:8000/user/', userData);
       console.log('User added successfully:', response.data);
       onClose();
-      showAlert('success', 'Register successful');
     } catch (error) {
       console.error('Error adding user:', error);
-      showAlert('error', 'Register error');
     }
   };
   
@@ -72,12 +52,12 @@ export default function Header() {
             </Text>
             <br />{' '}
             <Text color={'#6878F4'} as={'span'}>
-              Coworking Space
+              Online Consultation
             </Text>{' '}
           </Heading>
           <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.500'}>
-            SmartHub is the best coworking space for all of your coworking
-            needs. Based in Bandung, Indonesia's most comfortable city.
+            Serene is the best online consultation space for all of your mental
+            health needs. Accessible anytime, anywhere.
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
             <Button
@@ -90,7 +70,9 @@ export default function Header() {
               }}>
               Register Now
             </Button>
-            <Button rounded={'full'}>See Facilities</Button>
+              <Link to="https://ca-sereneapp.braveisland-f409e30d.southeastasia.azurecontainerapps.io/docs">
+                <Button rounded={'full'}>See Documentation</Button>
+              </Link>
           </Stack>
         </Stack>
         {/* Modal Component */}
