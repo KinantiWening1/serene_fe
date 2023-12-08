@@ -1,6 +1,6 @@
 # example netlify.toml
 [build]
-  base = "/opt/build/repo/serene_fe"
+  base = "/opt/build/repo/serene_fe/serene_fe"
   command = "npm run build"
   publish = "dist"
   functions = "netlify/functions"
