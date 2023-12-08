@@ -24,7 +24,7 @@ export default function Testimony() {
 
         <Text fontWeight={600}>Nobara Kugisaki</Text>
         <Text fontSize={'sm'} color={useColorModeValue('gray.400', 'gray.400')}>
-          SmartHub Member
+          Serene User
         </Text>
       </Box>
     </Stack>
