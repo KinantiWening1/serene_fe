@@ -1,7 +1,8 @@
 # example netlify.toml
 [build]
-  command = "cd /opt/build/repo/serene_fe && npm install && npm run build"
-  publish = "/opt/build/repo/serene_fe/dist"
+  base = "/opt/build/repo/serene_fe"
+  command = "npm run build"
+  publish = "dist"
   functions = "netlify/functions"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
